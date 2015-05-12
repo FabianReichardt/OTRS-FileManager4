@@ -73,9 +73,9 @@
 				<tbody>
 [% RenderBlockStart("ParentDirectory") %]
 					<tr>
-						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Translate("[% Data.Name | uri %]") | html %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_back.png" />[% Translate("[% Data.NameShown | truncate(110) | html %]") | html %]</a> [% Data.Count | html %]</td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Translate(Data.Name) | html %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_back.png" />[% Translate(Data.NameShown) | truncate(110) | html %]</a> [% Data.Count | html %]</td>
 						<td>[% Translate("Directory") | html %]</td>
-						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]">[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]">[% Translate(Data.Delete) | html %]</a></td>
 					</tr>
 [% RenderBlockEnd("ParentDirectory") %]
 
@@ -83,15 +83,15 @@
 					<tr>
 						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_folder2.png" />[% Data.NameShown | truncate(110) | html %]</a> [% Data.Count | html %]</td>
 						<td>[% Translate("Directory") | html %]</td>
-						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate(Data.Delete) | html %]</a></td>
 					</tr>
 [% RenderBlockEnd("Directory") %]
 
 [% RenderBlockStart("File") %]
 					<tr>
 						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_file2.png" />[% Data.NameShown | truncate(110) | html %]</a></td>
-						<td>[% Data.Size"}</td>
-						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmFile=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+						<td>[% Data.Size %]</td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmFile=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate(Data.Delete) | html %]</a></td>
 					</tr>
 [% RenderBlockEnd("File") %]
 				</tbody>

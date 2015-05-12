@@ -29,4 +29,24 @@ Package build
 perl otrs.PackageManager.pl -a build -p %GitHome%\OTRS-FileManager4\OTRS-FileManager4.sopm -d %GitHome%\OTRS-FileManager4\
 
 perl otrs.PackageManager.pl -a build -p /home/github/OTRS-FileManager4/OTRS-FileManager4.sopm -d /home/github/OTRS-FileManager4/
+
+
+Install:
+
+su -s /bin/bash -c "/opt/otrs/bin/otrs.PackageManager.pl -a install -p /tmp/OTRS-FileManager4-1.0.0.opm" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.RebuildConfig.pl" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.DeleteCache.pl" otrs
+
+
+Uninstall:
+
+su -s /bin/bash -c "/opt/otrs/bin/otrs.PackageManager.pl -a uninstall -p OTRS-FileManager4" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.RebuildConfig.pl" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.DeleteCache.pl" otrs
+
+Update:
+
+su -s /bin/bash -c "/opt/otrs/bin/otrs.PackageManager.pl -a upgrade -p /tmp/OTRS-FileManager4-1.0.0.opm" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.RebuildConfig.pl" otrs
+su -s /bin/bash -c "/opt/otrs/bin/otrs.DeleteCache.pl" otrs
 	
