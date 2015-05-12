@@ -1,0 +1,103 @@
+# --
+# AgentFileManager4.tt - provides HTML form for AgentFileManager4.pm
+# Copyright (C) 2012 Ole Jenning, https://github.com/ojenning
+# Copyright (C) 2015 Fabian Reichardt, https://github.com/fabianreichardt
+# --
+#
+# It is a port from Filemanager OTRS Version 2.x
+# http://source.otrs.org/viewvc.cgi/FileManager/
+#
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1 class="Header">[% Translate("OTRS FileManager IV") | html %]</h1>
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Actions") | html %]</h2>
+            </div>
+            <div class="Content">
+                <ul class="ActionList">
+                    <li>
+                        <a href="[% Env("Baselink") %]Action=[% Env("Action") %]" class="CallForAction"><span>[% Translate("Go to overview") | html %]</span></a>
+                    </li>
+                </ul>
+[% RenderBlockStart("RwOptions") %]
+				<hr>[% Translate("Create Directory") | html %]:
+				<form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="Action"   value="[% Env("Action") %]">
+					<input type="hidden" name="Location" value="[% Data.Location | html %]">
+					<input type="text"   name="NewDir"   value="[% Data.NewDir | html %]" size="20">
+					<input class="button" type="submit" value="[% Translate("Create") | html %]">
+				</form>
+				<hr>[% Translate("File Upload") | html %]:
+				<form action="[% Env("CGIHandle") %]" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="Action"   value="[% Env("Action") %]">
+					<input type="hidden" name="Location" value="[% Data.Location | html %]">
+					<input name="file_upload" type="file" size="16" class="fixed">
+					<input class="button" type="submit" value="[% Translate("Upload") | html %]">
+				</form>
+[% RenderBlockEnd("RwOptions") %]
+            </div>
+        </div>
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Note") | html %]</h2>
+            </div>
+            <div class='Content'>
+                <p>
+                    [% Translate("More information:") | html %]<br/> <a href="https://github.com/fabianreichardt/" target="_blank">https://github.com/fabianreichardt/</a>
+					<br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ContentColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("File-Manager") | html %]: [% Data.item("Location") %] </h2>
+			<div class="Content">
+[% RenderBlockStart("View") %]
+			<table class="DataTable">
+				<thead>
+						<tr>
+							<th class="W75pc">[% Translate("Name") | html %]</th>
+							<th class="W15pc">[% Translate("Type or Size") | html %]</th>
+							<th class="W10pc">[% Translate("Action") | html %]</th>
+						</tr>
+				</thead>
+				<tbody>
+[% RenderBlockStart("ParentDirectory") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Translate("[% Data.Name | uri %]") | html %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_back.png" />[% Translate("[% Data.NameShown | truncate(110) | html %]") | html %]</a> [% Data.Count | html %]</td>
+						<td>[% Translate("Directory") | html %]</td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]">[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+					</tr>
+[% RenderBlockEnd("ParentDirectory") %]
+
+[% RenderBlockStart("Directory") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_folder2.png" />[% Data.NameShown | truncate(110) | html %]</a> [% Data.Count | html %]</td>
+						<td>[% Translate("Directory") | html %]</td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmDir=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+					</tr>
+[% RenderBlockEnd("Directory") %]
+
+[% RenderBlockStart("File") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_file2.png" />[% Data.NameShown | truncate(110) | html %]</a></td>
+						<td>[% Data.Size"}</td>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.Location | uri %]&RmFile=[% Data.File | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_remove.png" />[% Translate("[% Data.Delete | html %]") | html %]</a></td>
+					</tr>
+[% RenderBlockEnd("File") %]
+				</tbody>
+		</table>
+[% RenderBlockEnd("View") %]
+			</div>
+		</div>
+	</div>
+</div>
