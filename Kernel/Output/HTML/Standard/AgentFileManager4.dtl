@@ -1,0 +1,102 @@
+# --
+# AgentFileManager4.dtl - provides HTML form for AgentFileManager3.pm
+# Copyright (C) 2012 Ole Jenning, https://github.com/ojenning
+# --
+#
+# It is a port from Filemanager OTRS Version 2.x
+# http://source.otrs.org/viewvc.cgi/FileManager/
+#
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1 class="Header">$Text{"OTRS FileManager IV"}</h1>
+    <div class="SidebarColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Actions"}</h2>
+            </div>
+            <div class="Content">
+                <ul class="ActionList">
+                    <li>
+                        <a href="$Env{"Baselink"}Action=$Env{"Action"}" class="CallForAction"><span>$Text{"Go to overview"}</span></a>
+                    </li>
+                </ul>
+<!-- dtl:block:RwOptions -->
+				<hr>$Text{"Create Directory"}:
+				<form action="$Env{"CGIHandle"}" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="Action"   value="$Env{"Action"}">
+					<input type="hidden" name="Location" value="$QData{"Location"}">
+					<input type="text"   name="NewDir"   value="$QData{"NewDir"}" size="20">
+					<input class="button" type="submit" value="$Text{"Create"}">
+				</form>
+				<hr>$Text{"File Upload"}:
+				<form action="$Env{"CGIHandle"}" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="Action"   value="$Env{"Action"}">
+					<input type="hidden" name="Location" value="$QData{"Location"}">
+					<input name="file_upload" type="file" size="16" class="fixed">
+					<input class="button" type="submit" value="$Text{"Upload"}">
+				</form>
+<!-- dtl:block:RwOptions -->
+            </div>
+        </div>
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"Note"}</h2>
+            </div>
+            <div class='Content'>
+                <p>
+                    $Text{"More information:"}<br/> <a href="https://github.com/fabianreichardt/" target="_blank">https://github.com/fabianreichardt/</a>
+					<br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="ContentColumn">
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>$Text{"File-Manager"}: $Data{"Location"} </h2>
+			<div class="Content">
+<!-- dtl:block:View -->
+			<table class="DataTable">
+				<thead>
+						<tr>
+							<th class="W75pc">$Text{"Name"}</th>
+							<th class="W15pc">$Text{"Type or Size"}</th>
+							<th class="W10pc">$Text{"Action"}</th>
+						</tr>
+				</thead>
+				<tbody>
+<!-- dtl:block:ParentDirectory -->
+					<tr>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"File"}" title="$Text{"$LQData{"Name"}"}"><img src="$Config{"Frontend::ImagePath"}/filemanager_back.png" />$Text{"$QData{"NameShown","110"}"}</a> $QData{"Count"}</td>
+						<td>$Text{"Directory"}</td>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"Location"}&RmDir=$LQData{"File"}">$Text{"$QData{"Delete"}"}</a></td>
+					</tr>
+<!-- dtl:block:ParentDirectory -->
+
+<!-- dtl:block:Directory -->
+					<tr>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"File"}" title="$LQData{"Name"}"><img src="$Config{"Frontend::ImagePath"}/filemanager_folder2.png" />$QData{"NameShown","110"}</a> $QData{"Count"}</td>
+						<td>$Text{"Directory"}</td>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"Location"}&RmDir=$LQData{"File"}"><img src="$Config{"Frontend::ImagePath"}/filemanager_remove.png" />$Text{"$QData{"Delete"}"}</a></td>
+					</tr>
+<!-- dtl:block:Directory -->
+
+<!-- dtl:block:File -->
+					<tr>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"File"}" title="$LQData{"Name"}"><img src="$Config{"Frontend::ImagePath"}/filemanager_file2.png" />$QData{"NameShown","110"}</a></td>
+						<td>$QData{"Size"}</td>
+						<td><a href="$Env{"Baselink"}Action=$Env{"Action"}&Location=$LQData{"Location"}&RmFile=$LQData{"File"}"><img src="$Config{"Frontend::ImagePath"}/filemanager_remove.png" />$Text{"$QData{"Delete"}"}</a></td>
+					</tr>
+<!-- dtl:block:File -->
+				</tbody>
+		</table>
+<!-- dtl:block:View -->
+			</div>
+		</div>
+	</div>
+</div>
