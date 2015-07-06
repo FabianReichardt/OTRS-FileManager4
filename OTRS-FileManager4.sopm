@@ -12,10 +12,16 @@
     <BuildHost>?</BuildHost>
     <Filelist>
         <File Permission="644" Location="Kernel/Config/Files/OTRS-FileManager4.xml"/>
+        <File Permission="644" Location="Kernel/Config/Files/CustomerDownload4.xml"/>
         <File Permission="644" Location="Kernel/Language/de_AgentFileManager.pm"/>
         <File Permission="644" Location="Kernel/Language/nb_NO_AgentFileManager.pm"/>
         <File Permission="644" Location="Kernel/Language/ru_AgentFileManager.pm"/>
         <File Permission="644" Location="Kernel/Language/zh_CN_AgentFileManager.pm"/>
+        <File Permission="644" Location="Kernel/System/CustomerDownload4.pm"></File>
+        <File Permission="644" Location="Kernel/Language/de_CustomerPortal4.pm"></File>
+        <File Permission="644" Location="Kernel/Modules/CustomerDownload4.pm"></File>
+        <File Permission="644" Location="Kernel/Output/HTML/Standard/CustomerDownload4.tt"></File>
+        <File Permission="644" Location="Kernel/System/CustomerDownload4.pm"></File>
         <File Permission="644" Location="Kernel/Modules/AgentFileManager4.pm"/>
         <File Permission="644" Location="Kernel/Output/HTML/Standard/AgentFileManager4.tt"/>
         <File Permission="644" Location="var/httpd/htdocs/skins/Agent/default/img/filemanager.png"/>

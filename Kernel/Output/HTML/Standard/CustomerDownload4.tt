@@ -1,0 +1,53 @@
+# --
+# Kernel/Output/HTML/Standard/CustomerDownload4.tt - overview
+# Copyright (C) 2015 Fabian Reichardt Fabian.Reichardt@cbs-consulting.de
+# --
+# This software comes with ABSOLUTELY NO WARRANTY. For details, see
+# the enclosed file COPYING for license information (AGPL). If you
+# did not receive this file, see http://www.gnu.org/licenses/agpl.txt.
+# --
+<!-- start form -->
+<div class="MainBox ARIARoleMain LayoutFixedSidebar SidebarFirst">
+    <h1 class="Header">[% Translate("Downloads") | html %]</h1>
+    <div>
+        <div class="WidgetSimple">
+            <div class="Header">
+                <h2>[% Translate("Current directory") | html %]: [% Data.item("Location") %] </h2>
+			<div class="Content">
+[% RenderBlockStart("View") %]
+			<table class="DataTable">
+				<thead>
+						<tr>
+							<th class="W75pc">[% Translate("Name") | html %]</th>
+							<th class="W15pc">[% Translate("Type or Size") | html %]</th>
+						</tr>
+				</thead>
+				<tbody>
+[% RenderBlockStart("ParentDirectory") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Translate(Data.Name) | html %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_back.png" />[% Translate(Data.NameShown) | truncate(110) | html %]</a> [% Data.Count | html %]</td>
+						<td>[% Translate("Directory") | html %]</td>
+					</tr>
+[% RenderBlockEnd("ParentDirectory") %]
+
+[% RenderBlockStart("Directory") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_folder2.png" />[% Data.NameShown | truncate(110) | html %]</a> [% Data.Count | html %]</td>
+						<td>[% Translate("Directory") | html %]</td>
+					</tr>
+[% RenderBlockEnd("Directory") %]
+
+[% RenderBlockStart("File") %]
+					<tr>
+						<td><a href="[% Env("Baselink") %]Action=[% Env("Action") %]&Location=[% Data.File | uri %]" title="[% Data.Name | uri %]"><img src="[% Config("Frontend::ImagePath") %]/filemanager_file2.png" />[% Data.NameShown | truncate(110) | html %]</a></td>
+						<td>[% Data.Size %]</td>
+					</tr>
+[% RenderBlockEnd("File") %]
+				</tbody>
+		</table>
+[% RenderBlockEnd("View") %]
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end form -->

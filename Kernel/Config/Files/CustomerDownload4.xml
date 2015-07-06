@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<otrs_config version="1.0" init="Application">
+    <ConfigItem Name="CustomerFrontend::Module###CustomerDownload4" Required="1" Valid="1">
+        <Description Translatable="1">FrontendModuleRegistration for Customer Download v4 module.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>Frontend::Customer::ModuleRegistration</SubGroup>
+        <Setting>
+            <FrontendModuleReg>
+                <NavBar>
+                    <Description>CustomerDownload4</Description>
+                    <Name>Downloads</Name>
+                    <Link>Action=CustomerDownload4</Link>
+                    <NavBar>FileManager4</NavBar>
+                    <Type></Type>
+                    <Prio>201</Prio>
+                    <Block></Block>
+                    <Group>customer_download</Group>
+                </NavBar>
+            </FrontendModuleReg>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::Root" Required="1" Valid="1">
+        <Description Lang="en">The root directory for the file manager. REMARK: If you use a Windows system: Your path entry need the perl style. Please replace all backslashes with slashes e.g. C:/Path/To/FileManager/Location/.</Description>
+        <Description Lang="de">Root-Verzeichnis für den File-Manager. ACHTUNG: Wenn ein Windowssystem benutzt wird, muss die Pfadeingabe in Perl-Style getätigt werden. Bitte ersetzte alle Backslashes mit Slashes. Z. B. C:/Path/To/FileManager/Location/.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <String Regex="">/home/otrs-share/</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::Trash" Required="1" Valid="1">
+        <Description Lang="en">Trash directory for the file manager. All deleted files or folders will be moved to this directory.</Description>
+        <Description Lang="de">Verzeichnis für den Mülleimer innerhalb des File-Managers. Alle gelöschten Dateien oder Ordner werden in dieses Verzeichnis verschoben.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <String Regex="">&lt;OTRS_CustomerDownload::Root&gt;Trash/</String>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::ReadAccessMap" Required="1" Valid="1">
+        <Description Lang="en">Set the read permissions for folders and files for the different folders.</Description>
+        <Description Lang="de">Festlegen des Lesezugriffs für Dateien oder Verzeichnisse der einzelnen Ordner.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="/Trash">admin</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::DeleteAccessMap" Required="1" Valid="1">
+        <Description Lang="en">Set the delete access for folders or files for the different folders.</Description>
+        <Description Lang="de">Festlegen der Löscherlaubnis für Dateien oder Verzeichnisse für die einzelnen Ordner.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="/Trash">admin</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::CreateAccessMap" Required="1" Valid="1">
+        <Description Lang="en">Set create permissions for files or folders for the different folders.</Description>
+        <Description Lang="de">Festlegen der Rechte zum Erstellen von Dateien oder Verzeichnissen für die verschiedenen Ordner.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <Hash>
+                <Item Key="/Trash">admin</Item>
+            </Hash>
+        </Setting>
+    </ConfigItem>
+    <ConfigItem Name="CustomerDownload4::ListType" Required="0" Valid="1">
+        <Description Lang="en">Set list type for the path of files and directories. Standard: complete path, Short: only file- or directory-name.</Description>
+        <Description Lang="de">Festlegen der Darstellung des Datei- und Ordnerpfades. Standard: kompletter Pfad, Short: nur Datei- oder Ordnername.</Description>
+        <Group>FileManager4</Group>
+        <SubGroup>CustomerDownload4</SubGroup>
+        <Setting>
+            <Option SelectedID="0">
+                <Item Key="0">Standard</Item>
+                <Item Key="1">Short</Item>
+            </Option>
+        </Setting>
+    </ConfigItem>
+</otrs_config>
